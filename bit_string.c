@@ -13,7 +13,7 @@ int main()
 	{ 
 		printf("\n MENU \n"); 
 		printf("1.Input\n2.Union\n3.Intersection\n4.Difference\n"); 
-		printf("Enter choice\n"); 
+		printf("Enter choice : \n"); 
 		scanf("%d",&ch); 
 		switch(ch) 
 		{ 
