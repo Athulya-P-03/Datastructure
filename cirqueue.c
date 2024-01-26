@@ -1,79 +1,83 @@
 #include<stdio.h>
 #include<stdlib.h>
-int n,choice,queue[50],front=-1,rear=-1;
-void display(),enqueue(),dequeue(),menu();
-int main() {
-    printf("Enter the no of elements:");
+void menu();
+void enqueue();
+void dequeue();
+void display();
+int queue[50],front=-1,rear=-1,n,ele,item,i,ch;
+void main()
+{
+    printf("Enter sixe of the queue : ");
     scanf("%d",&n);
     menu();
-    return 0;
 }
-void menu(){
-    printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\n");
-    printf("\nEnter your choice:");
-    scanf("%d",&choice);
-    switch(choice){
+void menu()
+{
+    printf("\n1.enqueue\n2.dequeue\n3.display\n4.exit");
+    printf("Enter your choice : ");
+    scanf("%d",&ch);
+    switch(ch)
+    {
         case 1:enqueue();
-            break;
+        break;
         case 2:dequeue();
-            break;
+        break;
         case 3:display();
-            break;
+        break;
         case 4:exit(1);
     }
 }
-void display()
+void enqueue()
 {
-    int i=0;
-    if(rear==-1)
+    if((front==rear+1)||(front==0 && rear==n-1))
     {
-        printf("Queue is empty\n");
+        printf("queue is full");
     }
     else
     {
-        printf("The queue elements are:");
-        for(i=front;i<=rear;i++){
-            printf("\t%d",queue[i]);
-        }
-    }
-    menu();
-}
-void enqueue(int ele)
-{
-    if(rear!=n-1)
-    {
-        printf("Enter the item to be inserted:");
+        
+        printf("Enter the element to be inserted : ");
         scanf("%d",&ele);
         front=0;
-        rear=rear+1;
+        rear=(rear+1)%n;
         queue[rear]=ele;
-        printf("Inserted successfully\n");
-    }
-    else
-    {
-        printf("Can't insert, queue is full!!\n");
+        printf("element inserted successfully");
     }
     menu();
 }
-void dequeue(){
-    int ele;
-    if(front==-1 || front>rear)
+void dequeue()
+{
+    if(front==-1)
     {
-        printf("Couldn't retrieve data, queue is empty!!\n");
+        printf("queue is empty");
     }
     else
     {
-        ele=queue[front];
-        printf("Deleted:%d",ele);
+        item=queue[front];
+        printf("element deleted : %d",item);
         if(front==rear)
         {
-           front=rear=-1;
+            front=rear=-1;
         }
-        else{
-            front=front+1;
+        else
+        {
+            front=(front+1)%n;
         }
     }
     menu();
 }
-
-	
+void display()
+{
+    int i;
+    if(front==-1)
+    {
+        printf("Queue is empty");
+    }
+    else
+    {
+        printf("queue elements are : ");
+        for(i=front;i<=rear;i=(i+1)%n)
+            printf("%d\t",queue[i]);
+    }
+    menu();
+}
