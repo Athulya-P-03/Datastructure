@@ -3,100 +3,96 @@
 void menu();
 void enqueue();
 void dequeue();
-void display();
 void peek();
-int queue[50],i,n,choice,item,front=-1,rear=-1;
+void display();
+int queue[20],front=-1,rear=-1,n,i;
 void main()
 {
-printf("Enter the size of the queue:");
-scanf("%d",&n);
-menu(); 
+    printf("Enter the size of the queue : ");
+    scanf("%d",&n);
+    menu();
 }
 void menu()
 {
- int choice;
- printf("\n1.enqueue\n2.dequeue\n3.display\n4.peek\n5.exit");
- printf("Enter your choice:");
- scanf("%d",&choice);
- switch(choice)
- {
-  case 1:enqueue();
-  break;
-  case 2:dequeue();
-  break;
-  case 3:display();
-  break;
-  case 4:peek();
-  break;
-  case 5:exit(1);
- }
+    int ch;
+    printf("\n1.enqueue\n2.dequeue\n3.peek\n4.display\n5.exit");
+    printf("Enter your choice : ");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1:enqueue();
+        break;
+        case 2:dequeue();
+        break;
+        case 3:peek();
+        break;
+        case 4:display();
+        break;
+    }
 }
 void enqueue()
 {
- if(rear!=n-1)
- {
-  printf("Enter the element to be inserted:");
-  scanf("%d",&item);
-  front=0;
-  rear=rear+1;
-  queue[rear]=item;
-  printf("inserted successfully");
-  }
- else
- {
-  printf("queue is full,can't insert data");
- }
-menu();
-}
-void dequeue()
-{
- if(front==-1 || front>rear)
- {
-  printf("queue is empty");
- }
- else
- {
-  item=queue[front];
-  printf("deleted element:\t%d",item);
-  if(front==rear)
-  {
-  front=rear=-1;
-  }
-  else
-  {
-  front=front+1;
-  }
- }
-menu();
-}
-void display()
-{
-    int i=0;
-    if(rear==-1)
+    int ele;
+    if(rear == n - 1)
     {
-        printf("queue is empty:");
+        printf("Queue is full");
     }
     else
     {
-        printf("queue elememts are:");
-        for(i=front;i<=rear;i++)
-        printf("%d\t",queue[i]);
+        printf("Enter the element to be inserted :");
+        scanf("%d",&ele);
+        front=0;
+        rear=rear+1;
+        queue[rear]=ele;
+        printf("Element inserted successfully");
+    }
+    menu();
+}
+void dequeue()
+{
+    int item;
+    if((front==-1)||(front>rear))
+    {
+        printf("Queue is emepty");
+    }
+    else
+    {
+        item=queue[front];
+        printf("Item deleted : %d",item);
+        if(front==rear)
+        {
+            front=rear=-1;
+        }
+        else
+        {
+            front=front+1;
+        }
     }
     menu();
 }
 void peek()
 {
- if(front==-1)
- {
-  printf("no element in queue\n");
- }
- else
- {
- printf("peek elemet:%d",queue[front]);
- }
-menu();
+    if((front==-1)||front>rear)
+    {
+        printf("Queue is empty");
+    }
+    else
+    {
+        printf("peak element is : %d",queue[front]);
+    }
+    menu();
 }
-
- 
-  
-  
+void display()
+{
+    if((front==-1)||(front>rear))
+    {
+       printf("queue is empty"); 
+    }
+    else
+    {
+        printf("Queue elements are :");
+        for(i=front;i<=rear;i++)
+            printf("%d\t",queue[i]);
+    }
+    menu();
+}
